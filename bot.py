@@ -116,7 +116,7 @@ def input_informe(update, context):
 def t(update, context):
     text=update.message.text
     context.bot.sendChatAction(chat_id='-1001363984343', action='typing', timeout=None)
-    context.bot.sendMessage(chat_id='-1001363984343', text=f"{text}".replace("/t ", ""))
+    context.bot.sendMessage(chat_id='-1001363984343', parse_mode='HTML', text=f"{text}".replace("/t ", ""))
 
 def photo(update, context):
     update.message.reply_text('Manda una Foto')
