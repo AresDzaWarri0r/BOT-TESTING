@@ -6,9 +6,6 @@ from telegram.ext import *
 
 INPUT_ANONIMO = 0
 INPUT_REPORTE = 0
-INPUT_DEAUTORIZAR = 0
-INPUT_INFORME = 0
-INPUT_PHOTO = 0
 
 
 def start(update, context):
@@ -71,59 +68,68 @@ def ocomandos(update, context):
 ➖➖➖ COMANDOS ➖➖➖
     """)
 
-def autorizar(update, context):
-    id=update.effective_user.id
-    nombre=update.effective_user.first_name
-    chat_id=update.message.chat.id
-    context.bot.sendChatAction(chat_id=chat_id, action='upload_document', timeout=None)
-    with open(f"{id}Autorización.txt", 'w') as f:
-        f.write(f"{nombre}")
-    context.bot.sendChatAction(chat_id=chat_id, action='typing', timeout=None)
-    update.message.reply_text(parse_mode='MarkdownV2', text=f"*{nombre}* _tus datos han sido Guardados y Has sido autorizado_\n ID : `{id}` NOMBRE : `{nombre}`")
-    print(f"AUTORIZACION :\nID : {id} NOMBRE : {nombre}")
-def deautorizar(update, context):
-    user_id=update.effective_user.id
-    with open(f'{user_id}Autorización.txt', 'rb') as reader: autorizacion=reader.read()
-    update.message.reply_text("Manda el ID del Usuario que quieras revocar su autorización..")
-    return INPUT_DEAUTORIZAR
-def delauth(update, context):
-    chat_id=update.message.chat.id
-    name=update.effective_user.first_name
-    del_auth=f"{update.message.text}Autorización.txt"
-    with open(f'{update.message.text}Autorización.txt', 'rb') as reader: delname=reader.read()
-    context.bot.sendChatAction(chat_id=chat_id, action='typing', timeout=None)
-    context.bot.sendMessage(chat_id=chat_id, text=f"{name} has desautorizado a {delname}".replace("b'", "").replace("'", "").replace("b"", "").replace(""", ""))
-    os.unlink(del_auth)
-    print(f"AUTORIZACION :\nID : {id} NOMBRE : {update.effective_user.first_name}")
-    return ConversationHandler.END
-
-def informe(update, context):
-    user_id=update.effective_user.id
-    with open(f'{user_id}Autorización.txt', 'rb') as reader: autorizacion=reader.read()
-    update.message.reply_text('Que desesas Informar?')
-    return INPUT_INFORME
-def input_informe(update, context):
-    chat_id=update.message.chat.id
-    context.bot.sendMessage(chat_id='-1001363984343',parse_mode='Markdown',text=f"""
-➖➖ Informe : {update.message.date} ➖➖
-{update.message.text}
-➖➖ Informe : {update.message.date} ➖➖
-    """)
-    update.message.pinned_message
-    context.bot.sendMessage(chat_id=chat_id, parse_mode="MarkdownV2", text=f"Informe Realizado Con Éxito")
-    return ConversationHandler.END
-
 def t(update, context):
     text=update.message.text
     context.bot.sendChatAction(chat_id='-1001363984343', action='typing', timeout=None)
     context.bot.sendMessage(chat_id='-1001363984343', parse_mode='HTML', text=f"{text}".replace("/t ", ""))
 
-def photo(update, context):
-    update.message.reply_text('Manda una Foto')
-    return INPUT_PHOTO
-def input_photo(update, context):
-    context.bot.sendMessage(chat_id=update.message.chat.id, text=f"{update.message.photo[2].fileid}")
-    return ConversationHandler.END
+def filtros(update, context):
+    msg=update.message.text
+    number=random.randint(1,3)
+    if ("Hola" == msg):
+        if (number == 1):
+            estado = f"{update.effective_user.first_name} Hola"
+            update.message.reply_text(text=estado)
+        if (number == 2):
+            estado = f"{update.effective_user.first_name} Que vuelta"
+            update.message.reply_text(text=estado)
+        if (number == 3):
+            estado = f"Ohayo {update.effective_user.first_name}-Sama"
+            update.message.reply_text(text=estado)
+    if ("Adiós" == msg):
+        if (number == 1):
+            estado = f"{update.effective_user.first_name} Adiós"
+            update.message.reply_text(text=estado)
+        if (number == 2):
+            estado = f"{update.effective_user.first_name} Cuídate"
+            update.message.reply_text(text=estado)
+        if (number == 3):
+            estado = f"{update.effective_user.first_name} Vete plp 😐"
+            update.message.reply_text(text=estado)
+    if ("Adios" == msg):
+        if (number == 1):
+            estado = f"{update.effective_user.first_name} Adiós"
+            update.message.reply_text(text=estado)
+        if (number == 2):
+            estado = f"{update.effective_user.first_name} Cuídate"
+            update.message.reply_text(text=estado)
+        if (number == 3):
+            estado = f"{update.effective_user.first_name} Vete plp 😐"
+            update.message.reply_text(text=estado)
+    if ("Puta" == msg):
+        if (number == 1):
+            estado = f"{update.effective_user.first_name} no me provoques más 😐"
+            update.message.reply_text(text=estado)
+        if (number == 2):
+            estado = f"{update.effective_user.first_name} puta tu y tu madre 😈"
+            update.message.reply_text(text=estado)
+        if (number == 3):
+            estado = f"{update.effective_user.first_name} vuelves a decir puta y te meto el toto en el sobaco 🤬"
+            update.message.reply_text(text=estado)
+    if ("Ayuda" == msg):
+        estado = f"{update.effective_user.first_name} necesita ayuda, pobrecito"
+        update.message.reply_text(text=estado)
+    if ("ID" == msg):
+        estado = f"Este es tu ID : `{update.effective_user.id}`"
+        update.message.reply_text(parse_mode="MarkdownV2", text=estado)
+    if ("Mencióname" == msg):
+        update.message.reply_text(parse_mode="MarkdownV2", text=f"[{update.effective_user.first_name}](tg://user?id={update.effective_user.id})")
+    if ("Mencioname" == msg):
+        update.message.reply_text(parse_mode="MarkdownV2", text=f"[{update.effective_user.first_name}](tg://user?id={update.effective_user.id})")
+    if ("mencioname" == msg):
+        update.message.reply_text(parse_mode="MarkdownV2", text=f"[{update.effective_user.first_name}](tg://user?id={update.effective_user.id})")
+    if ("mencióname" == msg):
+        update.message.reply_text(parse_mode="MarkdownV2", text=f"[{update.effective_user.first_name}](tg://user?id={update.effective_user.id})")
 
         # TOKEN
 if __name__ == '__main__':
@@ -136,13 +142,10 @@ if __name__ == '__main__':
     dp.add_handler(CommandHandler('start', start))
     dp.add_handler(CommandHandler("random", random_number))
     dp.add_handler(CallbackQueryHandler(pattern='button_ocomandos', callback=ocomandos))
-    dp.add_handler(CommandHandler("autorizar", autorizar))
     dp.add_handler(CommandHandler("t", t))
     dp.add_handler(ConversationHandler(entry_points=[CallbackQueryHandler(pattern='button_reporte', callback=reporte)], states={INPUT_REPORTE: [MessageHandler(Filters.text, input_reporte)]}, fallbacks=[]))
     dp.add_handler(ConversationHandler(entry_points=[CallbackQueryHandler(pattern='button_anonimo', callback=anonimo)], states={INPUT_ANONIMO: [MessageHandler(Filters.text, input_anonimo)]}, fallbacks=[]))
-    dp.add_handler(ConversationHandler(entry_points=[CommandHandler('deautorizar', deautorizar)],states={INPUT_DEAUTORIZAR: [MessageHandler(Filters.text, delauth)]},fallbacks=[]))
-    dp.add_handler(ConversationHandler(entry_points=[CommandHandler('informe', informe)],states={INPUT_INFORME: [MessageHandler(Filters.text, input_informe)]},fallbacks=[]))
-    dp.add_handler(ConversationHandler(entry_points=[CommandHandler('photo', photo)],states={INPUT_PHOTO: [MessageHandler(Filters.photo, input_photo)]},fallbacks=[]))
+    dp.add_handler(MessageHandler(filters=Filters.text, callback=filtros)) ##FILTROS##
 
     # Para Ejecutar el Bot
     updater.start_polling()
