@@ -76,6 +76,7 @@ def t(update, context):
 def filtros(update, context):
     msg=update.message.text
     number=random.randint(1,3)
+    chat_id=update.message.chat.id
     if ("Hola" == msg):
         if (number == 1):
             estado = f"{update.effective_user.first_name} Hola"
@@ -131,11 +132,7 @@ def filtros(update, context):
     if ("mencióname" == msg):
         update.message.reply_text(parse_mode="MarkdownV2", text=f"[{update.effective_user.first_name}](tg://user?id={update.effective_user.id})")
     if ("F gigante" == msg):
-        update.message.reply_text(parse_mode="MarkdownV2", text=f"""
-FFFFFFF
-F
-FFF
-F""")
+        context.bot.sendMessage(chat_id=chat_id, text=f"FFFFFFF\nF\nFFF\nF")
 
         # TOKEN
 if __name__ == '__main__':
