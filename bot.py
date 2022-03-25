@@ -130,6 +130,12 @@ def filtros(update, context):
         update.message.reply_text(parse_mode="MarkdownV2", text=f"[{update.effective_user.first_name}](tg://user?id={update.effective_user.id})")
     if ("mencióname" == msg):
         update.message.reply_text(parse_mode="MarkdownV2", text=f"[{update.effective_user.first_name}](tg://user?id={update.effective_user.id})")
+    if ("F gigante" == msg):
+        update.message.reply_text(parse_mode="MarkdownV2", text=f"""
+FFFFFFF
+F
+FFF
+F""")
 
         # TOKEN
 if __name__ == '__main__':
