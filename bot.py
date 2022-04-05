@@ -77,7 +77,7 @@ def filtros(update, context):
     msg=update.message.text
     number=random.randint(1,3)
     chat_id=update.message.chat.id
-    if ("Hola" == msg):
+    if str(msg).__contains__ ("Hola"):
         if (number == 1):
             estado = f"{update.effective_user.first_name} Hola"
             update.message.reply_text(text=estado)
@@ -87,7 +87,7 @@ def filtros(update, context):
         if (number == 3):
             estado = f"Ohayo {update.effective_user.first_name}-Sama"
             update.message.reply_text(text=estado)
-    if ("Adiós" == msg):
+    if str(msg).__contains__ ("Adiós"):
         if (number == 1):
             estado = f"{update.effective_user.first_name} Adiós"
             update.message.reply_text(text=estado)
@@ -97,7 +97,7 @@ def filtros(update, context):
         if (number == 3):
             estado = f"{update.effective_user.first_name} Vete plp 😐"
             update.message.reply_text(text=estado)
-    if ("Adios" == msg):
+    if str(msg).__contains__ ("Adios"):
         if (number == 1):
             estado = f"{update.effective_user.first_name} Adiós"
             update.message.reply_text(text=estado)
@@ -107,7 +107,7 @@ def filtros(update, context):
         if (number == 3):
             estado = f"{update.effective_user.first_name} Vete plp 😐"
             update.message.reply_text(text=estado)
-    if ("Puta" == msg):
+    if str(msg).__contains__ ("Puta"):
         if (number == 1):
             estado = f"{update.effective_user.first_name} no me provoques más 😐"
             update.message.reply_text(text=estado)
@@ -117,22 +117,32 @@ def filtros(update, context):
         if (number == 3):
             estado = f"{update.effective_user.first_name} vuelves a decir puta y te meto el toto en el sobaco 🤬"
             update.message.reply_text(text=estado)
-    if ("Ayuda" == msg):
+    if str(msg).__contains__ ("Ayuda"):
         estado = f"{update.effective_user.first_name} necesita ayuda, pobrecito"
         update.message.reply_text(text=estado)
-    if ("ID" == msg):
+    if str(msg).__contains__ ("ID"):
         estado = f"Este es tu ID : `{update.effective_user.id}`"
         update.message.reply_text(parse_mode="MarkdownV2", text=estado)
-    if ("Mencióname" == msg):
+    if str(msg).__contains__ ("Mencióname"):
         update.message.reply_text(parse_mode="MarkdownV2", text=f"[{update.effective_user.first_name}](tg://user?id={update.effective_user.id})")
-    if ("Mencioname" == msg):
+    if str(msg).__contains__ ("Mencioname"):
         update.message.reply_text(parse_mode="MarkdownV2", text=f"[{update.effective_user.first_name}](tg://user?id={update.effective_user.id})")
-    if ("mencioname" == msg):
+    if str(msg).__contains__ ("mencioname"):
         update.message.reply_text(parse_mode="MarkdownV2", text=f"[{update.effective_user.first_name}](tg://user?id={update.effective_user.id})")
-    if ("mencióname" == msg):
+    if str(msg).__contains__ ("mencióname"):
         update.message.reply_text(parse_mode="MarkdownV2", text=f"[{update.effective_user.first_name}](tg://user?id={update.effective_user.id})")
-    if ("F gigante" == msg):
+    if str(msg).__contains__ ("F gigante"):
         context.bot.sendMessage(chat_id=chat_id, text=f"FFFFFFF\nF\nFFF\nF")
+    if str(msg).__contains__ ("perro") :
+        context.bot.sendMessage(chat_id=update.message.chat.id,parse_mode="MarkdownV2",text=f"[perro](tg://user?id=1868774530) te llaman 🐶")
+    if str(msg).__contains__ ("Perro") :
+        context.bot.sendMessage(chat_id=update.message.chat.id,parse_mode="MarkdownV2",text=f"[perro](tg://user?id=1868774530) te llaman 🐶")
+    if str(msg).__contains__ ("PERRO") :
+        context.bot.sendMessage(chat_id=update.message.chat.id,parse_mode="MarkdownV2",text=f"[perro](tg://user?id=1868774530) te llaman 🐶")
+    if str(msg).__contains__ ("🐶") :
+        context.bot.sendMessage(chat_id=update.message.chat.id,parse_mode="MarkdownV2",text=f"[perro](tg://user?id=1868774530) te llaman 🐶")
+    else :
+        pass
 
         # TOKEN
 if __name__ == '__main__':
